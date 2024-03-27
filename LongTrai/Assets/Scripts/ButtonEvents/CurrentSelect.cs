@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CurrentSelect : MonoBehaviour
+public class CurrentSelect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private static EItems items;
+    public static void changeItems(EItems newItem){
+        items = newItem;
+    }
+    public static EItems getCurrentItem(){
+        return items;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
