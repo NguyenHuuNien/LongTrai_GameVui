@@ -7,7 +7,6 @@ public class Ground : MonoBehaviour
     [SerializeField] private Image imgGround;
     [SerializeField] private GameObject _HatGiong;
     private float luongNuoc;
-    private float timeDelta;
     private void Update() {
         Debug.Log(luongNuoc);
         if(luongNuoc>0){
@@ -30,7 +29,6 @@ public class Ground : MonoBehaviour
         _HatGiong.SetActive(true);
     }
     public void ClickedGround(){
-        Debug.Log("Clicked");
         if(CurrentSelect.getCurrentItem() == EItems.Water){
             TuoiNuoc();
         }else if(CurrentSelect.getCurrentItem() == EItems.HatGiong){
