@@ -6,21 +6,28 @@ public class Ground : MonoBehaviour
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private Image imgGround;
     [SerializeField] private GameObject _HatGiong;
+    [SerializeField] private GameObject _TableInfo;
+    [SerializeField] private Text[] texts;
     private float luongNuoc;
+    private bool openInfo = false;
+    private ETrees tree;
     private void Update() {
-        Debug.Log(luongNuoc);
-        if(luongNuoc>0){
+        if(luongNuoc>1){
             imgGround.sprite = _sprites[1];
             giamDoAm();
         }else{
-           imgGround.sprite = _sprites[0];
+            luongNuoc = 0;
+            imgGround.sprite = _sprites[0];
         }
+        if(openInfo)
+            Info();
     }
     private void giamDoAm(){
         luongNuoc -= Time.deltaTime;
     }
     public void UotDat(float water){
         luongNuoc += water;
+        if(luongNuoc>100) luongNuoc = 100;
     }
     private void TuoiNuoc(){
         UotDat(infoItems.water);
@@ -28,11 +35,18 @@ public class Ground : MonoBehaviour
     private void TrongHatGiong(){
         _HatGiong.SetActive(true);
     }
+    private void Info(){
+        texts[0].text = "Water: " + (int)luongNuoc + "/100";
+        texts[1].text = "Tree: 0%"; // can fix
+    }
     public void ClickedGround(){
         if(CurrentSelect.getCurrentItem() == EItems.Water){
             TuoiNuoc();
         }else if(CurrentSelect.getCurrentItem() == EItems.HatGiong){
             TrongHatGiong();
+        }else if(CurrentSelect.getCurrentItem() == EItems.None){
+            openInfo = !openInfo;
+            _TableInfo.SetActive(openInfo);
         }
     }
 }
