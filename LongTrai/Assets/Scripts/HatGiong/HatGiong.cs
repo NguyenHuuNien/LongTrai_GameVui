@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 public class HatGiong : MonoBehaviour{
-    private Sprite _sprite;
+    private SpriteRenderer _sprite;
     private List<Sprite> sprites;
     [SerializeField] private listSprite _listSprite;
     [HideInInspector] public EItems eTrees;
@@ -9,7 +9,7 @@ public class HatGiong : MonoBehaviour{
     public float speedDevelop {get; set;}
     public int index{get;set;} = 0;
     private void Awake() {
-        _sprite = GetComponent<Sprite>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
     private void OnEnable() {
         if(eTrees==EItems.Food_Human){
@@ -19,7 +19,7 @@ public class HatGiong : MonoBehaviour{
         }else if(eTrees==EItems.Food_Animal){
             sprites = _listSprite.getSpritesFoodAnimal();
         }
-        _sprite = sprites[index];
+        _sprite.sprite = sprites[index];
         changeState(new StateHatGiong());
     }
     private void Update() {
@@ -31,7 +31,7 @@ public class HatGiong : MonoBehaviour{
         if(stateHG!=null)
             stateHG.OnExit(this);
         stateHG = newState;
-        _sprite = sprites[index];
+        _sprite.sprite = sprites[index];
         if(stateHG != null)
             stateHG.OnEnter(this);
     }
