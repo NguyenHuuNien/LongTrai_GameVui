@@ -10,7 +10,6 @@ public class Ground : MonoBehaviour
     [SerializeField] private Text[] texts;
     private float luongNuoc;
     private bool openInfo = false;
-    private ETrees tree;
     private void Update() {
         if(luongNuoc>1){
             imgGround.sprite = _sprites[1];
@@ -33,6 +32,7 @@ public class Ground : MonoBehaviour
         UotDat(infoItems.water);
     }
     private void TrongHatGiong(){
+        _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
         _HatGiong.SetActive(true);
     }
     private void Info(){
@@ -42,7 +42,10 @@ public class Ground : MonoBehaviour
     public void ClickedGround(){
         if(CurrentSelect.getCurrentItem() == EItems.Water){
             TuoiNuoc();
-        }else if(CurrentSelect.getCurrentItem() == EItems.HatGiong){
+        }else if(CurrentSelect.getCurrentItem() == EItems.Food_Human ||
+        CurrentSelect.getCurrentItem() == EItems.Food_Water ||
+        CurrentSelect.getCurrentItem() == EItems.Food_Animal
+        ){
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
             openInfo = !openInfo;

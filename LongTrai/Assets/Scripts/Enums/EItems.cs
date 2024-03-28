@@ -2,6 +2,8 @@ public enum EItems{
     None,
     Water,
     Gay,
-    HatGiong
+    Food_Human,
+    Food_Water,
+    Food_Animal
     
 }
