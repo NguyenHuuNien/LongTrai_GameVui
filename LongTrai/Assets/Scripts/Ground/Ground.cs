@@ -6,11 +6,12 @@ public class Ground : SinhVat
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private Image imgGround;
     [SerializeField] private GameObject _HatGiong;
-    [SerializeField] private GameController gameController;
+    private static GameController gameController;
     private float luongNuoc;
     private int curHeart;
     private int prevMaxHeart;
     private void Start() {
+        gameController = FindAnyObjectByType<GameController>();
         eObjects = EObjects.ThucVat;
         MaxHeart = 10;
         prevMaxHeart = MaxHeart;
@@ -18,6 +19,7 @@ public class Ground : SinhVat
     }
     private void Update() {
         updateHeart();
+        if(isDisplay)Debug.Log(gameObject.name);
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
             imgGround.sprite = _sprites[1];
@@ -28,6 +30,7 @@ public class Ground : SinhVat
             imgGround.sprite = _sprites[0];
         }
         if(gameController.getIsActiveOfOshirase()&&isDisplay){
+            Debug.Log("Error" + isDisplay + " " + gameController.getIsActiveOfOshirase());
             displayed();
         }
     }
@@ -45,7 +48,7 @@ public class Ground : SinhVat
         }
     }
     private void displayed(){
-        gameController.Display(this,"Máu: "+curHeart+"/"+MaxHeart,"Độ ẩm: "+luongNuoc+"/100","Tốc độ: "+_HatGiong.GetComponent<HatGiong>().speedDevelop);
+        gameController.Display("Máu: "+curHeart+"/"+MaxHeart,"Độ ẩm: "+(int)luongNuoc+"/100","Tốc độ: "+_HatGiong.GetComponent<HatGiong>().speedDevelop);
     }
     private void giamDoAm(){
         luongNuoc -= Time.deltaTime;
@@ -71,6 +74,7 @@ public class Ground : SinhVat
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
             gameController.openDisplay();
+            gameController.CheckDisplay(this);
         }
     }
 }
