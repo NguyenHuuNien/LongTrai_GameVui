@@ -15,6 +15,7 @@ public class StatePhatTrien : IStateHG{
         }
     }
     public void OnExecute(HatGiong hatGiong){
+        Debug.Log("time = " + timeCurrentDevelop);
         if(timeCurrentDevelop<timeDevelop){
             timeCurrentDevelop+=Time.deltaTime;
         }else{

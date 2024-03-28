@@ -4,7 +4,7 @@ public class HatGiong : MonoBehaviour{
     private Sprite _sprite;
     private List<Sprite> sprites;
     [SerializeField] private listSprite _listSprite;
-    public EItems eTrees;
+    [HideInInspector] public EItems eTrees;
     private IStateHG stateHG;
     public float speedDevelop {get; set;}
     public int index{get;set;} = 0;
@@ -23,6 +23,7 @@ public class HatGiong : MonoBehaviour{
         changeState(new StateHatGiong());
     }
     private void Update() {
+        Debug.Log("index = " + index);
         if(stateHG!=null)
             stateHG.OnExecute(this);
     }

@@ -12,9 +12,11 @@ public class Ground : MonoBehaviour
     private bool openInfo = false;
     private void Update() {
         if(luongNuoc>1){
+            _HatGiong.GetComponent<HatGiong>().speedDevelop = 1;
             imgGround.sprite = _sprites[1];
             giamDoAm();
         }else{
+            _HatGiong.GetComponent<HatGiong>().speedDevelop = 0;
             luongNuoc = 0;
             imgGround.sprite = _sprites[0];
         }
