@@ -74,7 +74,7 @@ public class Ground : SinhVat
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
             gameController.openDisplay();
-            gameController.CheckDisplay(this);
         }
+        gameController.CheckDisplay(this);
     }
 }

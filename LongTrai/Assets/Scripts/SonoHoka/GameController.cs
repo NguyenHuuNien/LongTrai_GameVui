@@ -7,14 +7,17 @@ public class GameController : MonoBehaviour{
     private void Update() {
         if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
             if(Input.GetMouseButtonDown(1)){
-                Oshirase.SetActive(false);
-                CheckDisplay(null);
+                offOshirase();
             }
         }else if(CurrentSelect.getCurrentItem()!=EItems.None){
             if(Input.GetMouseButtonDown(1)){
                 CurrentSelect.changeItems(EItems.None);
             }
         }
+    }
+    public void offOshirase(){
+        Oshirase.SetActive(false);
+        CheckDisplay(null);
     }
     public bool getIsActiveOfOshirase(){
         return Oshirase.activeSelf;
