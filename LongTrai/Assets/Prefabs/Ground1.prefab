@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: 988341546, guid: 4cc57c5050e441442a4e11cfacb633cc, type: 3}
   imgGround: {fileID: 8136220769343172130}
   _HatGiong: {fileID: 6455456807942368557}
+  gameController: {fileID: 8860010603599190216, guid: a40dfa3b0c1f09342a79912eed98148b, type: 3}
 --- !u!114 &8136220769343172130
 MonoBehaviour:
   m_ObjectHideFlags: 0

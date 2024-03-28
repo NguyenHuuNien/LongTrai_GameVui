@@ -33,13 +33,16 @@ public class Ground : SinhVat
     }
     private void updateHeart(){
         prevMaxHeart = MaxHeart;
-        MaxHeart = _HatGiong.GetComponent<HatGiong>().index * 10;
+        MaxHeart = (_HatGiong.GetComponent<HatGiong>().index + 1) * 10;
         if(prevMaxHeart<MaxHeart){
             curHeart = curHeart * MaxHeart / prevMaxHeart;
         }
     }
     public void DecHeart(){
         curHeart-=5;
+        if(curHeart<=0){
+            _HatGiong.SetActive(false);
+        }
     }
     private void displayed(){
         gameController.Display(this,"Máu: "+curHeart+"/"+MaxHeart,"Độ ẩm: "+luongNuoc+"/100","Tốc độ: "+_HatGiong.GetComponent<HatGiong>().speedDevelop);
