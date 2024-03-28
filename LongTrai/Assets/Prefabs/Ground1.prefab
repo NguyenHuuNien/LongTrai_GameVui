@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7996581994540589113
 CanvasRenderer:
@@ -66,8 +66,10 @@ MonoBehaviour:
   - {fileID: 988341546, guid: 4cc57c5050e441442a4e11cfacb633cc, type: 3}
   imgGround: {fileID: 8136220769343172130}
   _HatGiong: {fileID: 6455456807942368557}
-  _TableInfo: {fileID: 0}
-  texts: []
+  _TableInfo: {fileID: 7541803797778387926}
+  texts:
+  - {fileID: 5040520821148505772}
+  - {fileID: 9217711817645832359}
 --- !u!114 &8136220769343172130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5154593858529163171}
+  - component: {fileID: 1388020946667849081}
   - component: {fileID: 3596299650336091439}
   m_Layer: 5
   m_Name: HatGiong
@@ -190,6 +193,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1388020946667849081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455456807942368557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746c5791d74b9674486e6c5ac1ada6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listSprite: {fileID: 314493930824995416, guid: 0967d45a516ebce4b8987d24181d36fc, type: 3}
+  eTrees: 0
 --- !u!212 &3596299650336091439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -338,7 +355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2965950250615144484
 RectTransform:
   m_ObjectHideFlags: 0

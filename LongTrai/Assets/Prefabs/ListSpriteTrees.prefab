@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5696459597582089415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3318710565826603708}
+  - component: {fileID: 314493930824995416}
+  m_Layer: 0
+  m_Name: ListSpriteTrees
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3318710565826603708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696459597582089415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314493930824995416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696459597582089415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8a3f340f446ca4abcc80cbde281b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dsFoodHuman:
+  - {fileID: 107884607, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -1910085774, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: 344594178, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -2048462590, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -950901307, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  dsFoodWater:
+  - {fileID: -1398379361, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -1444653831, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -1593283618, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -73072255, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: 1718147024, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  dsFoodAnimal:
+  - {fileID: -667260128, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: -2131714172, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: 9357182, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: 1204294443, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
+  - {fileID: 798950701, guid: f9807c96fa73afb4586ca179f987b2f6, type: 3}
