@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class EventsButton : MonoBehaviour
 {
+    [SerializeField] private GameObject Oshirase;
+    private void Update() {
+        if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
+            if(Input.GetMouseButtonDown(1)){
+                Oshirase.SetActive(false);
+            }
+        }else if(CurrentSelect.getCurrentItem()!=EItems.None){
+            if(Input.GetMouseButtonDown(1)){
+                CurrentSelect.changeItems(EItems.None);
+            }
+        }
+    }
     public void chooseWater(){
         if(CurrentSelect.getCurrentItem() != EItems.Water)
             CurrentSelect.changeItems(EItems.Water);

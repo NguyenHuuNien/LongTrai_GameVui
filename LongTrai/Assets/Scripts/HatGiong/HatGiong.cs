@@ -23,7 +23,6 @@ public class HatGiong : MonoBehaviour{
         changeState(new StateHatGiong());
     }
     private void Update() {
-        Debug.Log("index = " + index);
         if(stateHG!=null)
             stateHG.OnExecute(this);
     }

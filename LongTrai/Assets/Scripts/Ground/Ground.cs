@@ -7,7 +7,6 @@ public class Ground : MonoBehaviour
     [SerializeField] private Image imgGround;
     [SerializeField] private GameObject _HatGiong;
     private float luongNuoc;
-    private bool openInfo = false;
     private void Update() {
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
@@ -42,6 +41,7 @@ public class Ground : MonoBehaviour
         ){
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
+            
         }
     }
 }
