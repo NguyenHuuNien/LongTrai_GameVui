@@ -17,7 +17,7 @@ public class StatePhatTrien : IStateHG{
     public void OnExecute(HatGiong hatGiong){
         Debug.Log("time = " + timeCurrentDevelop);
         if(timeCurrentDevelop<timeDevelop){
-            timeCurrentDevelop+=Time.deltaTime;
+            timeCurrentDevelop+=Time.deltaTime * hatGiong.speedDevelop;
         }else{
             if(hatGiong.index<hatGiong.getCountSprite()-1){
                 hatGiong.changeState(new StatePhatTrien());
