@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour{
     [SerializeField] private GameObject Oshirase;
-    private SinhVat curSinhVat;
+    private static SinhVat curSinhVat;
     private void Update() {
         if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
             if(Input.GetMouseButtonDown(1)){
@@ -42,9 +42,13 @@ public class GameController : MonoBehaviour{
         }
     }
     public void ButtonThuHoach(){
-        curSinhVat.gameObject.SetActive(false);
+        if(curSinhVat!=null && curSinhVat.isCanGetIt){
+            curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+        }
     }
     public void ButtonLayGiong(){
-        curSinhVat.gameObject.SetActive(false); 
+        if(curSinhVat!=null && curSinhVat.isCanGetIt){
+            curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+        }
     }
 }

@@ -8,6 +8,7 @@ public class HatGiong : MonoBehaviour{
     private IStateHG stateHG;
     public float speedDevelop {get; set;}
     public int index{get;set;} = 0;
+    public bool isGet {get;set;} = false;
     private void Awake() {
         _sprite = GetComponent<SpriteRenderer>();
     }

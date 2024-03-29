@@ -18,6 +18,7 @@ public class Ground : SinhVat
         curHeart = MaxHeart;
     }
     private void Update() {
+        isCanGetIt = _HatGiong.GetComponent<HatGiong>().isGet;
         updateHeart();
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
@@ -39,8 +40,8 @@ public class Ground : SinhVat
             curHeart = curHeart * MaxHeart / prevMaxHeart;
         }
     }
-    public void DecHeart(){
-        curHeart-=5;
+    public void DecHeart(int dame){
+        curHeart-=dame;
         if(curHeart<=0){
             _HatGiong.SetActive(false);
         }

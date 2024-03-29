@@ -5,6 +5,7 @@ public class StateHatGiong : IStateHG{
     private float timeCurrentDevelop;
     private float timeDevelop;
     public void OnEnter(HatGiong hatGiong){
+        hatGiong.isGet = false;
         hatGiong.speedDevelop = 1;
         timeCurrentDevelop = 0;
         if(hatGiong.eTrees==EItems.Food_Human){

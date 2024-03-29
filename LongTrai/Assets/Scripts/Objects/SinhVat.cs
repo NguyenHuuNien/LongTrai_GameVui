@@ -7,4 +7,5 @@ public class SinhVat : MonoBehaviour{
     private void Start() {
         isDisplay = false;
     }
+    public bool isCanGetIt {get;set;} = false;
 }
