@@ -10,10 +10,12 @@ public class Ground : SinhVat
     private float luongNuoc;
     private int curHeart;
     private int prevMaxHeart;
+    private int i; // Tang gia tri mau khi gieo hat
     private void Awake() {
         gameController = FindAnyObjectByType<GameController>();
     }
     private void Start() {
+        i = 0;
         eObjects = EObjects.ThucVat;
         MaxHeart = 0;
         prevMaxHeart = MaxHeart;
@@ -21,9 +23,6 @@ public class Ground : SinhVat
     }
     private void Update() {
         isCanGetIt = _HatGiong.GetComponent<HatGiong>().isGet;
-        if(_HatGiong.activeSelf){
-            // Debug.Log("On Ground: "+isCanGetIt);
-        }
         updateHeart();
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
@@ -40,7 +39,7 @@ public class Ground : SinhVat
     }
     private void updateHeart(){
         prevMaxHeart = MaxHeart;
-        MaxHeart = (_HatGiong.GetComponent<HatGiong>().index + 1) * 10;
+        MaxHeart = (_HatGiong.GetComponent<HatGiong>().index + i) * 10;
         if(prevMaxHeart<MaxHeart){
             curHeart+=10;
         }
@@ -75,6 +74,7 @@ public class Ground : SinhVat
         _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
         GameController.changeCountItem(CurrentSelect.getCurrentItem(),-1);
         _HatGiong.SetActive(true);
+        i = 1;
     }
     public void ClickedGround(){
         if(CurrentSelect.getCurrentItem() == EItems.Water){
