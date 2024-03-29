@@ -13,6 +13,7 @@ public class HatGiong : MonoBehaviour{
         _sprite = GetComponent<SpriteRenderer>();
     }
     private void OnEnable() {
+        index = 0;
         if(eTrees==EItems.Food_Human){
             sprites =  _listSprite.getSpritesFoodHuman();
         }else if(eTrees==EItems.Food_Water){

@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour{
         }
     }
     public void ButtonThuHoach(){
+        Debug.Log(curSinhVat.isCanGetIt);
         if(curSinhVat!=null && curSinhVat.isCanGetIt){
             curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
         }
