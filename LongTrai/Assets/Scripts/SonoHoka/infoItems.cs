@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class infoItems{
-    public static float water {get; set;} = 20;
+    public static int water {get; set;} = 20;
     public static float[] getTimeFHuman(){
         return new float[]{15,30,60};
     }

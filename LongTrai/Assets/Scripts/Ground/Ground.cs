@@ -52,15 +52,22 @@ public class Ground : SinhVat
     private void giamDoAm(){
         luongNuoc -= Time.deltaTime;
     }
-    public void UotDat(float water){
-        luongNuoc += water;
+    public void UotDat(){
+        luongNuoc += GameController.getWater();
         if(luongNuoc>100) luongNuoc = 100;
     }
     private void TuoiNuoc(){
-        UotDat(infoItems.water);
+        if(GameController.getCountItem(EItems.Water)<=0)
+            return;
+        UotDat();
     }
     private void TrongHatGiong(){
+        if(_HatGiong.activeSelf)
+            return;
         _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
+        if(GameController.getCountItem(CurrentSelect.getCurrentItem())<=0)
+            return;
+        GameController.changeCountItem(CurrentSelect.getCurrentItem(),-1);
         _HatGiong.SetActive(true);
     }
     public void ClickedGround(){
@@ -70,8 +77,13 @@ public class Ground : SinhVat
                 CurrentSelect.getCurrentItem() == EItems.Food_Water ||
                 CurrentSelect.getCurrentItem() == EItems.Food_Animal
         ){
+            if(GameController.getCountItem(CurrentSelect.getCurrentItem())<=0){
+                Debug.Log("Het vat pham");
+                return;
+            }
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
+            CurrentSelect.setHatGiong(_HatGiong.GetComponent<HatGiong>());
             gameController.openDisplay();
         }
         gameController.CheckDisplay(this);
