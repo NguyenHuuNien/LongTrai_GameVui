@@ -8,11 +8,12 @@ public class HatGiong : MonoBehaviour{
     private IStateHG stateHG;
     public float speedDevelop {get; set;}
     public int index{get;set;} = 0;
-    public bool isGet {get;set;} = false;
+    public bool isGet {get;set;}
     private void Awake() {
         _sprite = GetComponent<SpriteRenderer>();
     }
     private void OnEnable() {
+        isGet = false;
         index = 0;
         if(eTrees==EItems.Food_Human){
             sprites =  _listSprite.getSpritesFoodHuman();
@@ -21,7 +22,7 @@ public class HatGiong : MonoBehaviour{
         }else if(eTrees==EItems.Food_Animal){
             sprites = _listSprite.getSpritesFoodAnimal();
         }
-        _sprite.sprite = sprites[index];
+        _sprite.sprite = sprites[0];
         changeState(new StateHatGiong());
     }
     private void Update() {

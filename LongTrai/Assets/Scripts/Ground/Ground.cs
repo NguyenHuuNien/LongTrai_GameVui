@@ -21,6 +21,9 @@ public class Ground : SinhVat
     }
     private void Update() {
         isCanGetIt = _HatGiong.GetComponent<HatGiong>().isGet;
+        if(_HatGiong.activeSelf){
+            // Debug.Log("On Ground: "+isCanGetIt);
+        }
         updateHeart();
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
@@ -70,7 +73,6 @@ public class Ground : SinhVat
         if(_HatGiong.activeSelf)
             return;
         _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
-        Debug.Log(GameController.getCountItem(CurrentSelect.getCurrentItem()));
         GameController.changeCountItem(CurrentSelect.getCurrentItem(),-1);
         _HatGiong.SetActive(true);
     }

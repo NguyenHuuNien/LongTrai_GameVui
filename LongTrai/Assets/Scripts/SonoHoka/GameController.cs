@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour{
         tabemono[EItems.Food_Water] = 0;
     }
     private void Update() {
-        Debug.Log(CurrentSelect.getCurrentItem());
         if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
             if(Input.GetMouseButtonDown(1)){
                 offOshirase();
