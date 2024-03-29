@@ -41,4 +41,10 @@ public class GameController : MonoBehaviour{
             Oshirase.GetComponent<Oshirase>().DisplayInfo(t1,t2,t3,"Thịt","Chữa");
         }
     }
+    public void ButtonThuHoach(){
+        curSinhVat.gameObject.SetActive(false);
+    }
+    public void ButtonLayGiong(){
+        curSinhVat.gameObject.SetActive(false); 
+    }
 }

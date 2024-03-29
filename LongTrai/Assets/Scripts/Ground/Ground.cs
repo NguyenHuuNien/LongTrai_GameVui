@@ -19,7 +19,6 @@ public class Ground : SinhVat
     }
     private void Update() {
         updateHeart();
-        if(isDisplay)Debug.Log(gameObject.name);
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
             imgGround.sprite = _sprites[1];
@@ -30,7 +29,6 @@ public class Ground : SinhVat
             imgGround.sprite = _sprites[0];
         }
         if(gameController.getIsActiveOfOshirase()&&isDisplay){
-            Debug.Log("Error" + isDisplay + " " + gameController.getIsActiveOfOshirase());
             displayed();
         }
     }
