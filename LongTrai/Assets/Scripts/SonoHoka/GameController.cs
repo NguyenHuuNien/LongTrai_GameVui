@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour{
         tabemono[EItems.Food_Water] = 0;
     }
     private void Update() {
+        Debug.Log(CurrentSelect.getCurrentItem());
         if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
             if(Input.GetMouseButtonDown(1)){
                 offOshirase();
@@ -25,12 +26,6 @@ public class GameController : MonoBehaviour{
             if(Input.GetMouseButtonDown(1)){
                 CurrentSelect.changeItems(EItems.None);
             }
-        }
-        if(CurrentSelect.getCurrentItem() != EItems.Food_Human ||
-                CurrentSelect.getCurrentItem() != EItems.Food_Water ||
-                CurrentSelect.getCurrentItem() != EItems.Food_Animal
-        ){
-            CurrentSelect.setHatGiong(null);
         }
     }
     public static void changeCountTabemono(EItems eItems, int soLuong){
@@ -83,15 +78,15 @@ public class GameController : MonoBehaviour{
         }
     }
     public void ButtonThuHoach(){
-        if(curSinhVat!=null && curSinhVat.isCanGetIt){
+        if(curSinhVat!=null && curSinhVat.isCanGetIt){ 
+            GameController.changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
             curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-            changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
         }
     }
     public void ButtonLayGiong(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){
+            GameController.changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
             curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-            changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
         }
     }
 }

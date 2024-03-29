@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 
 public class CurrentSelect
 {
-    public static HatGiong hatGiong;
+    private static HatGiong hatGiong;
     private static EItems items;
     public static void changeItems(EItems newItem){
         items = newItem;

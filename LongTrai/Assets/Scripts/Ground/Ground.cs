@@ -10,10 +10,12 @@ public class Ground : SinhVat
     private float luongNuoc;
     private int curHeart;
     private int prevMaxHeart;
-    private void Start() {
+    private void Awake() {
         gameController = FindAnyObjectByType<GameController>();
+    }
+    private void Start() {
         eObjects = EObjects.ThucVat;
-        MaxHeart = 10;
+        MaxHeart = 0;
         prevMaxHeart = MaxHeart;
         curHeart = MaxHeart;
     }
@@ -37,13 +39,14 @@ public class Ground : SinhVat
         prevMaxHeart = MaxHeart;
         MaxHeart = (_HatGiong.GetComponent<HatGiong>().index + 1) * 10;
         if(prevMaxHeart<MaxHeart){
-            curHeart = curHeart * MaxHeart / prevMaxHeart;
+            curHeart+=10;
         }
     }
     public void DecHeart(int dame){
         curHeart-=dame;
         if(curHeart<=0){
             _HatGiong.SetActive(false);
+            MaxHeart = 0;
         }
     }
     private void displayed(){
@@ -57,16 +60,17 @@ public class Ground : SinhVat
         if(luongNuoc>100) luongNuoc = 100;
     }
     private void TuoiNuoc(){
-        if(GameController.getCountItem(EItems.Water)<=0)
+        if(GameController.getCountItem(EItems.Water)<=0){
+            CurrentSelect.changeItems(EItems.None);
             return;
+        }
         UotDat();
     }
     private void TrongHatGiong(){
         if(_HatGiong.activeSelf)
             return;
         _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
-        if(GameController.getCountItem(CurrentSelect.getCurrentItem())<=0)
-            return;
+        Debug.Log(GameController.getCountItem(CurrentSelect.getCurrentItem()));
         GameController.changeCountItem(CurrentSelect.getCurrentItem(),-1);
         _HatGiong.SetActive(true);
     }
@@ -79,13 +83,14 @@ public class Ground : SinhVat
         ){
             if(GameController.getCountItem(CurrentSelect.getCurrentItem())<=0){
                 Debug.Log("Het vat pham");
+                CurrentSelect.changeItems(EItems.None);
                 return;
             }
             TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
-            CurrentSelect.setHatGiong(_HatGiong.GetComponent<HatGiong>());
             gameController.openDisplay();
         }
+        CurrentSelect.setHatGiong(_HatGiong.GetComponent<HatGiong>());
         gameController.CheckDisplay(this);
     }
 }
