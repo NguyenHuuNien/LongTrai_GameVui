@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class Chicken : SinhVat{
+    public int curHeart{get;set;}
+    public int doi{get;set;}
+    [SerializeField] private ESex eSex;
+    public int dame{get;set;}
+    public int speedAttack{get;set;}
+    private ChickenMove chickenMove;
+    private void Awake() {
+        chickenMove = GetComponent<ChickenMove>();
+    }
+    private void Start() {
+        isDisplay = false;
+        isCanGetIt = true;
+        MaxHeart = 100;
+        curHeart = 100;
+        dame = eSex==ESex.Duc?7:5;
+        speedAttack = eSex==ESex.Duc?3:2;
+        eObjects = EObjects.DongVat;
+    }
+    public void attackChicken(int dame){
+        curHeart -= dame;
+        if(curHeart<=0){
+            Debug.Log("Ga chet roi!");
+        }
+        chickenMove.chickenRun();
+    }
+    public ESex getSex(){
+        return eSex;
+    }
+}

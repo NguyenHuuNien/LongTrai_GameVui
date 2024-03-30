@@ -2,29 +2,25 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ChickenMove : SinhVat
+public class ChickenMove : MonoBehaviour
 {
-    [SerializeField] private ESex eSex;
     [SerializeField] private Animator _anim;
-    private LayerMask layerMaskWall;
-    private LayerMask layerMaskLuongThuc;
-    private int dame;
+    private LayerMask layerMaskWall,layerMaskLuongThuc;
     private Vector2 dicMove;
+    private int speedMove = 1;
     private String currentAnim = "isDung";
     private bool isAttack;
-    private int speedMove = 1;
-    private float timeAttack, speedAttack, timeMove, timeChangeMove;
+    private Chicken chicken;
+    private float timeAttack, timeMove, timeChangeMove;
     private int[][] dic = new int[][]{new int[]{0,-1,0,1,0},new int[]{0,-1,0,1,0}};
     private void Awake() {
+        chicken = GetComponent<Chicken>();
         layerMaskWall = LayerMask.GetMask("Wall");
         layerMaskLuongThuc = LayerMask.GetMask("LuongThuc");
     }
     private void Start() {
         isAttack = false;
-        eObjects = EObjects.DongVat;
-        MaxHeart = 100;
-        dame = eSex==ESex.Duc?7:5;
-        speedAttack = eSex==ESex.Duc?3:2;
+        chicken.eObjects = EObjects.DongVat;
         timeChangeMove = randomTime();
         randomDic();
     }
@@ -34,7 +30,6 @@ public class ChickenMove : SinhVat
         move();
     }
     private void move(){
-        Debug.Log(dicMove);
         transform.position = new Vector3(transform.position.x+speedMove*dicMove.x * Time.deltaTime,transform.position.y+speedMove*dicMove.y * Time.deltaTime,0);
         if(isAttack){
             dicMove = new Vector2(0,0);
@@ -102,10 +97,10 @@ public class ChickenMove : SinhVat
             isAttack = true;
             if(isAttack)
                 if(timeAttack<5)
-                    timeAttack += Time.deltaTime * speedAttack;
+                    timeAttack += Time.deltaTime * chicken.speedAttack;
                 else{
                     timeAttack = 0;
-                    luongthuc.gameObject.GetComponent<Ground>().DecHeart(dame);
+                    luongthuc.gameObject.GetComponent<Ground>().DecHeart(chicken.dame);
                 }
         }else{
             isAttack = false;

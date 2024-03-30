@@ -38,6 +38,7 @@ public class Ground : SinhVat
             luongNuoc = 0;
             imgGround.sprite = _sprites[0];
         }
+        Debug.Log(gameController==null);
         if(gameController.getIsActiveOfOshirase()&&isDisplay){
             displayed();
         }

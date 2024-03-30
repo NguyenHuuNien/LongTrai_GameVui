@@ -27,6 +27,13 @@ public class EventsButton : MonoBehaviour
         else
             CurrentSelect.changeItems(EItems.None);
     }
+    public void chooseItemGay(){
+        if(CurrentSelect.getCurrentItem()!=EItems.Gay){
+            CurrentSelect.changeItems(EItems.Gay);
+        }else{
+            CurrentSelect.changeItems(EItems.None);
+        }
+    }
     public void chooseItemThuHoach(){
         if(CurrentSelect.getCurrentItem()!=EItems.ThuHoach){
             CurrentSelect.changeItems(EItems.ThuHoach);

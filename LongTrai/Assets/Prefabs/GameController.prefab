@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 936292206856736861}
   - component: {fileID: 346672805841138904}
   - component: {fileID: 8860010603599190216}
+  - component: {fileID: 7160377957795892936}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -58,3 +59,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Oshirase: {fileID: 2649158788865310889, guid: 9efbf2959dfece543bae914e2b67c795, type: 3}
+--- !u!114 &7160377957795892936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811018632481573180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e067f7fe7b4547a4db072cd8eab17d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
