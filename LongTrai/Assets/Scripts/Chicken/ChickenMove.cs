@@ -12,6 +12,7 @@ public class ChickenMove : SinhVat
     private Vector2 dicMove;
     private String currentAnim = "isDung";
     private bool isAttack;
+    private int speedMove = 1;
     private float timeAttack, speedAttack, timeMove, timeChangeMove;
     private int[][] dic = new int[][]{new int[]{0,-1,0,1,0},new int[]{0,-1,0,1,0}};
     private void Awake() {
@@ -34,7 +35,7 @@ public class ChickenMove : SinhVat
     }
     private void move(){
         Debug.Log(dicMove);
-        transform.position = new Vector3(transform.position.x+dicMove.x * Time.deltaTime,transform.position.y+dicMove.y * Time.deltaTime,0);
+        transform.position = new Vector3(transform.position.x+speedMove*dicMove.x * Time.deltaTime,transform.position.y+speedMove*dicMove.y * Time.deltaTime,0);
         if(isAttack){
             dicMove = new Vector2(0,0);
             changeAnim("isAttack");
@@ -74,6 +75,13 @@ public class ChickenMove : SinhVat
                 _anim.SetFloat("y",dicMove.y);
             }
         }
+    }
+    public void chickenRun(){
+        speedMove = 3;
+        Invoke(nameof(restartSpeedMove),Random.Range(1,3));
+    }
+    private void restartSpeedMove(){
+        speedMove = 1;
     }
     private void checkedDicMove(){
         RaycastHit2D down = Physics2D.Raycast(transform.position,Vector2.down,0.8f,layerMaskWall);
