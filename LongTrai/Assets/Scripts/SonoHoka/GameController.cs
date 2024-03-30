@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour{
     private static Dictionary<EItems, int> tabemono = new Dictionary<EItems, int>();
     [SerializeField] private GameObject Oshirase;
     private static SinhVat curSinhVat;
+    public static bool chooseChicken{get;set;}
     private void Start() {
         storageBox[EItems.Food_Human] = 3;
         storageBox[EItems.Food_Animal] = 3;
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour{
         tabemono[EItems.Food_Human] = 0;
         tabemono[EItems.Food_Animal] = 0;
         tabemono[EItems.Food_Water] = 0;
+        tabemono[EItems.ThitGa] = 0;
+        chooseChicken = false;
     }
     private void Update() {
         if(CurrentSelect.getCurrentItem()==EItems.None && Oshirase.activeSelf){
@@ -70,6 +73,7 @@ public class GameController : MonoBehaviour{
         }
     }
     public void Display(String t1, String t2, String t3){
+        if(curSinhVat==null) return;
         if(curSinhVat.eObjects==EObjects.ThucVat)
             Oshirase.GetComponent<Oshirase>().DisplayInfo(t1,t2,t3,"Thu hoạch","Lấy giống");
         else if(curSinhVat.eObjects==EObjects.DongVat){
@@ -78,16 +82,28 @@ public class GameController : MonoBehaviour{
     }
     public void ButtonThuHoach(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){ 
-            GameController.changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
-            curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-            CurrentSelect.changeItems(EItems.ThuHoach);
+            if(curSinhVat.gameObject.layer==LayerMask.GetMask("LuongThuc")){
+                curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+                CurrentSelect.changeItems(EItems.ThuHoach);
+                changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
+            }
+            else if(curSinhVat.gameObject.layer==LayerMask.GetMask("Chicken")){
+                curSinhVat.gameObject.GetComponent<Chicken>().killChicken();
+                changeCountItem(EItems.ThitGa,1);
+            }
         }
     }
     public void ButtonLayGiong(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){
-            GameController.changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
-            curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-            CurrentSelect.changeItems(EItems.LayGiong);
+            if(curSinhVat.gameObject.layer==LayerMask.GetMask("LuongThuc")){
+                changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
+                curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+                CurrentSelect.changeItems(EItems.LayGiong);
+            }
+            else if(curSinhVat.gameObject.layer==LayerMask.GetMask("Chicken")){
+                Debug.Log("Chua benh cho ga! Hay them dieu kien");
+                curSinhVat.gameObject.GetComponent<Chicken>().incHeart();
+            }
         }
     }
 }

@@ -21,12 +21,24 @@ public class Chicken : SinhVat{
     }
     public void attackChicken(int dame){
         curHeart -= dame;
+        chickenMove.rangeAttack = 0;
         if(curHeart<=0){
             Debug.Log("Ga chet roi!");
+            curHeart = 0;
+            chickenMove.isDie = true;
         }
         chickenMove.chickenRun();
+    }
+    public void killChicken(){
+        curHeart = 0;
+    }
+    public void incHeart(){
+        curHeart += 10;
     }
     public ESex getSex(){
         return eSex;
     }
+    public void notSitDown(){
+        chickenMove.randomDic();
+    }    
 }

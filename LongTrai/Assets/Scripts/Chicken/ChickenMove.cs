@@ -9,22 +9,33 @@ public class ChickenMove : MonoBehaviour
     private Vector2 dicMove;
     private int speedMove = 1;
     private String currentAnim = "isDung";
-    private bool isAttack;
+    public bool isAttack{get;set;}
     private Chicken chicken;
     private float timeAttack, timeMove, timeChangeMove;
-    private int[][] dic = new int[][]{new int[]{0,-1,0,1,0},new int[]{0,-1,0,1,0}};
+    public bool isDie{get;set;}
+    public bool isSitdown{get;set;}
+    public float rangeAttack{get;set;}
+    private int[][] dic = new int[][]{new int[]{-1,0,1,0},new int[]{-1,0,1,0}};
     private void Awake() {
         chicken = GetComponent<Chicken>();
         layerMaskWall = LayerMask.GetMask("Wall");
         layerMaskLuongThuc = LayerMask.GetMask("LuongThuc");
     }
     private void Start() {
+        isDie = false;
         isAttack = false;
+        isSitdown = false;
         chicken.eObjects = EObjects.DongVat;
         timeChangeMove = randomTime();
         randomDic();
     }
     private void Update() {
+        if(isDie){
+            _anim.SetFloat("x",0);
+            _anim.SetFloat("y",1);
+            changeAnim("isNgoi");
+            return;
+        }
         checkedLuongThuc();
         checkedDicMove();
         move();
@@ -32,13 +43,16 @@ public class ChickenMove : MonoBehaviour
     private void move(){
         transform.position = new Vector3(transform.position.x+speedMove*dicMove.x * Time.deltaTime,transform.position.y+speedMove*dicMove.y * Time.deltaTime,0);
         if(isAttack){
+            isSitdown = true;
             dicMove = new Vector2(0,0);
             changeAnim("isAttack");
             return;
         }
         if(dicMove.x==0&&dicMove.y==0){
+            isSitdown = true;
             changeAnim("isDung");
         }else{
+            isSitdown = false;
             changeAnim("isMove");
         }
         if(timeMove<timeChangeMove){
@@ -59,8 +73,8 @@ public class ChickenMove : MonoBehaviour
             _anim.SetBool(currentAnim,true);
         }
     }
-    private void randomDic(){
-        dicMove = new Vector2(dic[0][Random.Range(0,5)],dic[1][Random.Range(0,5)]);
+    public void randomDic(){
+        dicMove = new Vector2(dic[0][Random.Range(0,4)],dic[1][Random.Range(0,4)]);
         if(!(dicMove.x==0&&dicMove.y==0)){
             if(dicMove.x!=0&&dicMove.y!=0){
                 _anim.SetFloat("x",dicMove.x);
@@ -76,7 +90,11 @@ public class ChickenMove : MonoBehaviour
         Invoke(nameof(restartSpeedMove),Random.Range(1,3));
     }
     private void restartSpeedMove(){
+        Invoke(nameof(restartRangeAttack),Random.Range(1,3));
         speedMove = 1;
+    }
+    private void restartRangeAttack(){
+        rangeAttack = 0.4f;
     }
     private void checkedDicMove(){
         RaycastHit2D down = Physics2D.Raycast(transform.position,Vector2.down,0.8f,layerMaskWall);
@@ -92,7 +110,7 @@ public class ChickenMove : MonoBehaviour
         }
     }
     private void checkedLuongThuc(){
-        Collider2D luongthuc = Physics2D.OverlapCircle(transform.position,0.4f,layerMaskLuongThuc);
+        Collider2D luongthuc = Physics2D.OverlapCircle(transform.position,rangeAttack,layerMaskLuongThuc);
         if(luongthuc!=null&&luongthuc.gameObject.GetComponent<Ground>().getCurrentHeart()>0){
             isAttack = true;
             if(isAttack)

@@ -38,7 +38,6 @@ public class Ground : SinhVat
             luongNuoc = 0;
             imgGround.sprite = _sprites[0];
         }
-        Debug.Log(gameController==null);
         if(gameController.getIsActiveOfOshirase()&&isDisplay){
             displayed();
         }
@@ -86,6 +85,7 @@ public class Ground : SinhVat
         i = 1;
     }
     public void ClickedGround(){
+        if(GameController.chooseChicken) return;
         if(CurrentSelect.getCurrentItem() == EItems.Water){
             TuoiNuoc();
         }else if(CurrentSelect.getCurrentItem() == EItems.Food_Human ||

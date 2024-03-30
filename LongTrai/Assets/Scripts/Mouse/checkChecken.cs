@@ -10,14 +10,17 @@ public class checkChicken : MonoBehaviour{
         layer = LayerMask.GetMask("Chicken");
     }
     private void Update() {
-        Debug.Log(CurrentSelect.getCurrentItem());
         if(Input.GetMouseButtonDown(0)){
             Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray,Vector2.zero,Mathf.Infinity,layer);
             if(hit.collider!=null){
                 Chicken chicken = hit.collider.gameObject.GetComponent<Chicken>();
+                GameController.chooseChicken = true;
+                Invoke(nameof(reFalseChooseChicken),0.5f);
                 if(CurrentSelect.getCurrentItem()==EItems.Gay){
-                    chicken.attackChicken(10);
+                    chicken.notSitDown();
+                    chicken.attackChicken(5);
+                    gameController.CheckDisplay(chicken);
                     gameController.Display(chicken.curHeart+"/100",chicken.doi+"/100",chicken.getSex().ToString());
                 }else if(CurrentSelect.getCurrentItem()==EItems.None){
                     gameController.openDisplay();
@@ -25,7 +28,9 @@ public class checkChicken : MonoBehaviour{
                     gameController.Display(chicken.curHeart+"/100",chicken.doi+"/100",chicken.getSex().ToString());
                 }
             }
-
         }
+    }
+    private void reFalseChooseChicken(){
+        GameController.chooseChicken = false;
     }
 }
