@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1091715187623722284}
   - component: {fileID: 8136220769343172130}
   - component: {fileID: 1850505221861474869}
-  m_Layer: 5
+  - component: {fileID: 2020142395576759190}
+  m_Layer: 6
   m_Name: Ground1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +66,6 @@ MonoBehaviour:
   - {fileID: 988341546, guid: 4cc57c5050e441442a4e11cfacb633cc, type: 3}
   imgGround: {fileID: 8136220769343172130}
   _HatGiong: {fileID: 6455456807942368557}
-  gameController: {fileID: 8860010603599190216, guid: a40dfa3b0c1f09342a79912eed98148b, type: 3}
 --- !u!114 &8136220769343172130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +152,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!61 &2020142395576759190
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608836788609094473}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.041015625, y: 0.20498657}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 22.066895, y: 22.315125}
+  m_EdgeRadius: 0
 --- !u!1 &6455456807942368557
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +208,7 @@ GameObject:
   - component: {fileID: 5154593858529163171}
   - component: {fileID: 1388020946667849081}
   - component: {fileID: 3596299650336091439}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HatGiong
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -49,6 +49,9 @@ public class Ground : SinhVat
             curHeart+=10;
         }
     }
+    public int getCurrentHeart(){
+        return curHeart;
+    }
     public void DecHeart(int dame){
         curHeart-=dame;
         if(curHeart<=0){
