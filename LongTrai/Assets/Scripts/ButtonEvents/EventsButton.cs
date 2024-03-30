@@ -27,4 +27,18 @@ public class EventsButton : MonoBehaviour
         else
             CurrentSelect.changeItems(EItems.None);
     }
+    public void chooseItemThuHoach(){
+        if(CurrentSelect.getCurrentItem()!=EItems.ThuHoach){
+            CurrentSelect.changeItems(EItems.ThuHoach);
+        }else{
+            CurrentSelect.changeItems(EItems.None);
+        }
+    }
+    public void chooseItemLayGiong(){
+        if(CurrentSelect.getCurrentItem()!=EItems.LayGiong){
+            CurrentSelect.changeItems(EItems.LayGiong);
+        }else{
+            CurrentSelect.changeItems(EItems.None);
+        }
+    }
 }

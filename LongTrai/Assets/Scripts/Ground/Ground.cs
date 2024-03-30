@@ -23,7 +23,12 @@ public class Ground : SinhVat
     }
     private void Update() {
         isCanGetIt = _HatGiong.GetComponent<HatGiong>().isGet;
-        updateHeart();
+        if(_HatGiong.activeSelf)
+            updateHeart();
+        else{
+            MaxHeart = 0;
+            curHeart = 0;
+        }
         if(luongNuoc>1){
             _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
             imgGround.sprite = _sprites[1];
@@ -86,11 +91,17 @@ public class Ground : SinhVat
             if(GameController.getCountItem(CurrentSelect.getCurrentItem())<=0){
                 Debug.Log("Het vat pham");
                 CurrentSelect.changeItems(EItems.None);
-                return;
+            }else{
+                TrongHatGiong();
             }
-            TrongHatGiong();
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
             gameController.openDisplay();
+        }else if(CurrentSelect.getCurrentItem() == EItems.ThuHoach && isCanGetIt){
+            GameController.changeCountTabemono(_HatGiong.GetComponent<HatGiong>().eTrees,1);
+            DecHeart(curHeart);
+        }else if(CurrentSelect.getCurrentItem() == EItems.LayGiong && isCanGetIt){
+            GameController.changeCountItem(_HatGiong.GetComponent<HatGiong>().eTrees,1);
+            DecHeart(curHeart);
         }
         CurrentSelect.setHatGiong(_HatGiong.GetComponent<HatGiong>());
         gameController.CheckDisplay(this);

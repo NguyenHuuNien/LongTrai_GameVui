@@ -4,6 +4,7 @@ public enum EItems{
     Gay,
     Food_Human,
     Food_Water,
-    Food_Animal
-    
+    Food_Animal,
+    ThuHoach,
+    LayGiong
 }

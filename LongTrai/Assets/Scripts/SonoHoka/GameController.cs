@@ -80,12 +80,14 @@ public class GameController : MonoBehaviour{
         if(curSinhVat!=null && curSinhVat.isCanGetIt){ 
             GameController.changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
             curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+            CurrentSelect.changeItems(EItems.ThuHoach);
         }
     }
     public void ButtonLayGiong(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){
             GameController.changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
             curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
+            CurrentSelect.changeItems(EItems.LayGiong);
         }
     }
 }
