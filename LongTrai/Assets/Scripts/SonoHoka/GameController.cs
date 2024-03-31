@@ -82,25 +82,26 @@ public class GameController : MonoBehaviour{
     }
     public void ButtonThuHoach(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){ 
-            if(curSinhVat.gameObject.layer==LayerMask.GetMask("LuongThuc")){
+            if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("LuongThuc")){
                 curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
                 CurrentSelect.changeItems(EItems.ThuHoach);
                 changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
             }
-            else if(curSinhVat.gameObject.layer==LayerMask.GetMask("Chicken")){
+            else if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("Chicken")){
                 curSinhVat.gameObject.GetComponent<Chicken>().killChicken();
-                changeCountItem(EItems.ThitGa,1);
+                changeCountTabemono(EItems.ThitGa,1);
             }
         }
     }
     public void ButtonLayGiong(){
         if(curSinhVat!=null && curSinhVat.isCanGetIt){
-            if(curSinhVat.gameObject.layer==LayerMask.GetMask("LuongThuc")){
+            Debug.Log(curSinhVat.gameObject.layer);
+            if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("LuongThuc")){
                 changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
                 curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
                 CurrentSelect.changeItems(EItems.LayGiong);
             }
-            else if(curSinhVat.gameObject.layer==LayerMask.GetMask("Chicken")){
+            else if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("Chicken")){
                 Debug.Log("Chua benh cho ga! Hay them dieu kien");
                 curSinhVat.gameObject.GetComponent<Chicken>().incHeart();
             }

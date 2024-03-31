@@ -30,7 +30,7 @@ public class Chicken : SinhVat{
         chickenMove.chickenRun();
     }
     public void killChicken(){
-        curHeart = 0;
+        attackChicken(curHeart);
     }
     public void incHeart(){
         curHeart += 10;
