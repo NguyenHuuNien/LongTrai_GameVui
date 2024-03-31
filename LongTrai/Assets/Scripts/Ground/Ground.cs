@@ -30,7 +30,7 @@ public class Ground : SinhVat
             curHeart = 0;
         }
         if(luongNuoc>1){
-            _HatGiong.GetComponent<HatGiong>().speedDevelop = 10;
+            _HatGiong.GetComponent<HatGiong>().speedDevelop = 1;
             imgGround.sprite = _sprites[1];
             giamDoAm();
         }else{

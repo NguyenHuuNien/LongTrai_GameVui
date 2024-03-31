@@ -9,10 +9,10 @@ public class GameController : MonoBehaviour{
     private static SinhVat curSinhVat;
     public static bool chooseChicken{get;set;}
     private void Start() {
-        storageBox[EItems.Food_Human] = 3;
-        storageBox[EItems.Food_Animal] = 3;
-        storageBox[EItems.Food_Water] = 3;
-        storageBox[EItems.Water] = 500;
+        storageBox[EItems.Food_Human] = 15;
+        storageBox[EItems.Food_Animal] = 15;
+        storageBox[EItems.Food_Water] = 15;
+        storageBox[EItems.Water] = 5000;
         tabemono[EItems.Food_Human] = 0;
         tabemono[EItems.Food_Animal] = 0;
         tabemono[EItems.Food_Water] = 0;
@@ -84,7 +84,6 @@ public class GameController : MonoBehaviour{
         if(curSinhVat!=null && curSinhVat.isCanGetIt){ 
             if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("LuongThuc")){
                 curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-                CurrentSelect.changeItems(EItems.ThuHoach);
                 changeCountTabemono(CurrentSelect.GetHatGiong().eTrees,1);
             }
             else if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("Chicken")){
@@ -99,7 +98,6 @@ public class GameController : MonoBehaviour{
             if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("LuongThuc")){
                 changeCountItem(CurrentSelect.GetHatGiong().eTrees,1);
                 curSinhVat.gameObject.GetComponent<Ground>().DecHeart(100);
-                CurrentSelect.changeItems(EItems.LayGiong);
             }
             else if(curSinhVat.gameObject.layer==LayerMask.NameToLayer("Chicken")){
                 Debug.Log("Chua benh cho ga! Hay them dieu kien");
