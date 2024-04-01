@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour{
     private static Dictionary<EItems,int> storageBox = new Dictionary<EItems, int>();
@@ -8,11 +9,12 @@ public class GameController : MonoBehaviour{
     [SerializeField] private GameObject Oshirase;
     private static SinhVat curSinhVat;
     public static bool chooseChicken{get;set;}
+    [SerializeField] private Text[] txtSoLuong;
     private void Start() {
         storageBox[EItems.Food_Human] = 15;
         storageBox[EItems.Food_Animal] = 15;
         storageBox[EItems.Food_Water] = 15;
-        storageBox[EItems.Water] = 5000;
+        storageBox[EItems.Water] = 10000;
         tabemono[EItems.Food_Human] = 0;
         tabemono[EItems.Food_Animal] = 0;
         tabemono[EItems.Food_Water] = 0;
@@ -28,6 +30,13 @@ public class GameController : MonoBehaviour{
             if(Input.GetMouseButtonDown(1)){
                 CurrentSelect.changeItems(EItems.None);
             }
+        }
+        if(txtSoLuong.Length==3){
+            txtSoLuong[0].text = "x"+storageBox[EItems.Food_Human];
+            txtSoLuong[1].text = "x"+storageBox[EItems.Food_Water];
+            txtSoLuong[2].text = "x"+storageBox[EItems.Food_Animal];
+        }else{
+            Debug.Log("Chua cho text vao!");
         }
     }
     public static void changeCountTabemono(EItems eItems, int soLuong){
@@ -103,6 +112,35 @@ public class GameController : MonoBehaviour{
                 Debug.Log("Chua benh cho ga! Hay them dieu kien");
                 curSinhVat.gameObject.GetComponent<Chicken>().incHeart();
             }
+        }
+    }
+    public void SuDungHoaQua(int index){
+        EItems tmpItem = EItems.None;
+        if(index==0)
+            tmpItem = EItems.Food_Human;
+        else if(index==1)
+            tmpItem = EItems.Food_Water;
+        else if(index==2)
+            tmpItem = EItems.Food_Animal;
+        else if(index==3)
+            tmpItem = EItems.ThitGa;
+
+        if(tmpItem==EItems.ThitGa){
+            if(tabemono[EItems.ThitGa]<1) return;
+            tabemono[EItems.ThitGa]--;
+            Debug.Log("An thi ga");
+        }else if(tmpItem==EItems.Food_Human){
+            if(tabemono[EItems.Food_Human]<1) return;
+            tabemono[EItems.Food_Human]--;
+            Debug.Log("An food for human");
+        }else if(tmpItem==EItems.Food_Water){
+            if(tabemono[EItems.Food_Water]<1) return;
+            tabemono[EItems.Food_Water]--;
+            Debug.Log("An food for water");
+        }else if(tmpItem==EItems.Food_Animal){
+            if(tabemono[EItems.Food_Animal]<1) return;
+            tabemono[EItems.Food_Animal]--;
+            Debug.Log("An food for animal");
         }
     }
 }

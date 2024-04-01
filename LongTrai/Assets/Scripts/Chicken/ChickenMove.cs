@@ -95,7 +95,7 @@ public class ChickenMove : MonoBehaviour
     }
     private void restartRangeAttack(){
         rangeAttack = 0.4f;
-    }
+    }  
     private void checkedDicMove(){
         RaycastHit2D down = Physics2D.Raycast(transform.position,Vector2.down,0.8f,layerMaskWall);
         RaycastHit2D up = Physics2D.Raycast(transform.position,Vector2.up,0.8f,layerMaskWall);
