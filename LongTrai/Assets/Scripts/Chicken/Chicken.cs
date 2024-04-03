@@ -21,7 +21,6 @@ public class Chicken : SinhVat{
     }
     public void attackChicken(int dame){
         curHeart -= dame;
-        chickenMove.rangeAttack = 0;
         if(curHeart<=0){
             Debug.Log("Ga chet roi!");
             curHeart = 0;

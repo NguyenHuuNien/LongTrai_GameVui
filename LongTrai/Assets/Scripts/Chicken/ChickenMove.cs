@@ -87,10 +87,11 @@ public class ChickenMove : MonoBehaviour
     }
     public void chickenRun(){
         speedMove = 3;
-        Invoke(nameof(restartSpeedMove),Random.Range(1,3));
+        rangeAttack = 0;
+        Invoke(nameof(restartSpeedMove),Random.Range(2,5));
     }
     private void restartSpeedMove(){
-        Invoke(nameof(restartRangeAttack),Random.Range(1,3));
+        Invoke(nameof(restartRangeAttack),Random.Range(2,4));
         speedMove = 1;
     }
     private void restartRangeAttack(){
