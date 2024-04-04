@@ -10,7 +10,7 @@ public class EggChicken : MonoBehaviour{
             timer += Time.deltaTime;
         }else{
             Instantiate(chicken,transform.position,transform.rotation);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
