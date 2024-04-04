@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Chicken : SinhVat{
     public int curHeart{get;set;}
-    public int doi{get;set;}
+    public float doi{get;set;}
     [SerializeField] private ESex eSex;
     public int dame{get;set;}
     public int speedAttack{get;set;}

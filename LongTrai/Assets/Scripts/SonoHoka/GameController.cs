@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour{
         tabemono[EItems.Food_Animal] = 0;
         tabemono[EItems.Food_Water] = 0;
         tabemono[EItems.ThitGa] = 0;
+        tabemono[EItems.Egg] = 0;
         chooseChicken = false;
     }
     private void Update() {
@@ -124,7 +125,9 @@ public class GameController : MonoBehaviour{
             tmpItem = EItems.Food_Animal;
         else if(index==3)
             tmpItem = EItems.ThitGa;
-
+        else if(index==4){
+            tmpItem = EItems.Egg;
+        }
         if(tmpItem==EItems.ThitGa){
             if(tabemono[EItems.ThitGa]<1) return;
             tabemono[EItems.ThitGa]--;
@@ -141,6 +144,10 @@ public class GameController : MonoBehaviour{
             if(tabemono[EItems.Food_Animal]<1) return;
             tabemono[EItems.Food_Animal]--;
             Debug.Log("An food for animal");
+        }else if(tmpItem==EItems.Egg){
+            if(tabemono[EItems.Egg]<1) return;
+            tabemono[EItems.Egg]--;
+            Debug.Log("An Egg");
         }
     }
 }

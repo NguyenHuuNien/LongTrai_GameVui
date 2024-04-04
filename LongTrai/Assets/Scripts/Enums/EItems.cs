@@ -1,6 +1,7 @@
 public enum EItems{
     None,
     ThitGa,
+    Egg,
     Water,
     Gay,
     Food_Human,
