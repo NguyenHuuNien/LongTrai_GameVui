@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 public class GameController : MonoBehaviour{
     private static Dictionary<EItems,int> storageBox = new Dictionary<EItems, int>();
     private static Dictionary<EItems, int> tabemono = new Dictionary<EItems, int>();
@@ -141,7 +141,14 @@ public class GameController : MonoBehaviour{
             tabemono[EItems.Food_Water]--;
             Debug.Log("An food for water");
         }else if(tmpItem==EItems.Food_Animal){
+            Debug.Log("Goi do an");
             if(tabemono[EItems.Food_Animal]<1) return;
+            Debug.Log("Co do an");
+            var chickens = FindObjectsByType<Chicken>(FindObjectsSortMode.None);
+            foreach (var item in chickens)
+            {
+                item.doi += Random.Range(30,60);
+            }
             tabemono[EItems.Food_Animal]--;
             Debug.Log("An food for animal");
         }else if(tmpItem==EItems.Egg){
