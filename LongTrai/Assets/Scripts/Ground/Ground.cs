@@ -113,20 +113,74 @@ public class Ground : SinhVat, IDataGround
         CurrentSelect.setHatGiong(saveHatGiong);
         gameController.CheckDisplay(this);
     }
-    public void setDataGround(Ground ground){
-
+    // Save Load Data
+    public void setLuongNuoc(float luongNuoc)
+    {
+        this.luongNuoc = luongNuoc;
     }
-    public Ground getDataGround(){
-        Ground tmpGround = new Ground();
-        tmpGround.luongNuoc = this.luongNuoc;
-        tmpGround.curHeart = this.curHeart;
-        tmpGround.saveStateHatGiong = this._HatGiong.activeSelf;
-        if(tmpGround.saveStateHatGiong){
-            HatGiong tmpHatGiong = new HatGiong();
-            tmpHatGiong.eTrees = saveHatGiong.eTrees;
-            tmpGround.i = this.i;
-            tmpHatGiong.index = saveHatGiong.index;
-        }
-        return tmpGround;
+
+    public float getLuongNuoc()
+    {
+        return luongNuoc;
+    }
+
+    public void setHeart(int heart)
+    {
+        this.curHeart = heart;
+    }
+
+    public int getHeart()
+    {
+        return curHeart;
+    }
+
+    public void setStateHatGiong(bool stateHatGiong)
+    {
+        this._HatGiong.SetActive(stateHatGiong);
+    }
+
+    public bool getStateHatGiong()
+    {
+        return _HatGiong.activeSelf;
+    }
+
+    public int getI()
+    {
+        return this.i;
+    }
+
+    public void setI(int i)
+    {
+        this.i = i;
+    }
+
+    public void setIndexHatGiong(int index)
+    {
+        saveHatGiong.index = index;
+    }
+
+    public int getIndexHatGiong()
+    {
+        return saveHatGiong.index;
+    }
+
+    public void setEItemTree(EItems eItems)
+    {
+        saveHatGiong.eTrees = eItems;
+    }
+
+    public EItems getEItemTree()
+    {
+        return saveHatGiong.eTrees;
+    }
+
+    public void setSpeedHatGiong(float speed)
+    {
+        saveHatGiong.speedDevelop = speed;
+    }
+
+    public float getSpeedHatGiong()
+    {
+        return saveHatGiong.speedDevelop;
     }
 }
