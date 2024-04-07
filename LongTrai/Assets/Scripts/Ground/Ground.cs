@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ground : SinhVat
+public class Ground : SinhVat, IDataGround
 {
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private Image imgGround;
@@ -10,9 +10,12 @@ public class Ground : SinhVat
     private float luongNuoc;
     private int curHeart;
     private int prevMaxHeart;
+    private HatGiong saveHatGiong;
+    private bool saveStateHatGiong;
     private int i; // Tang gia tri mau khi gieo hat
     private void Awake() {
         gameController = FindAnyObjectByType<GameController>();
+        saveHatGiong = _HatGiong.GetComponent<HatGiong>();
     }
     private void Start() {
         i = 0;
@@ -22,7 +25,7 @@ public class Ground : SinhVat
         curHeart = MaxHeart;
     }
     private void Update() {
-        isCanGetIt = _HatGiong.GetComponent<HatGiong>().isGet;
+        isCanGetIt = saveHatGiong.isGet;
         if(_HatGiong.activeSelf)
             updateHeart();
         else{
@@ -30,11 +33,11 @@ public class Ground : SinhVat
             curHeart = 0;
         }
         if(luongNuoc>1){
-            _HatGiong.GetComponent<HatGiong>().speedDevelop = 1;
+            saveHatGiong.speedDevelop = 1;
             imgGround.sprite = _sprites[1];
             giamDoAm();
         }else{
-            _HatGiong.GetComponent<HatGiong>().speedDevelop = 0;
+            saveHatGiong.speedDevelop = 0;
             luongNuoc = 0;
             imgGround.sprite = _sprites[0];
         }
@@ -44,7 +47,7 @@ public class Ground : SinhVat
     }
     private void updateHeart(){
         prevMaxHeart = MaxHeart;
-        MaxHeart = (_HatGiong.GetComponent<HatGiong>().index + i) * 10;
+        MaxHeart = (saveHatGiong.index + i) * 10;
         if(prevMaxHeart<MaxHeart){
             curHeart+=10;
         }
@@ -79,7 +82,7 @@ public class Ground : SinhVat
     private void TrongHatGiong(){
         if(_HatGiong.activeSelf)
             return;
-        _HatGiong.GetComponent<HatGiong>().eTrees = CurrentSelect.getCurrentItem();
+        saveHatGiong.eTrees = CurrentSelect.getCurrentItem();
         GameController.changeCountItem(CurrentSelect.getCurrentItem(),-1);
         _HatGiong.SetActive(true);
         i = 1;
@@ -101,13 +104,29 @@ public class Ground : SinhVat
         }else if(CurrentSelect.getCurrentItem() == EItems.None){
             gameController.openDisplay();
         }else if(CurrentSelect.getCurrentItem() == EItems.ThuHoach && isCanGetIt){
-            GameController.changeCountTabemono(_HatGiong.GetComponent<HatGiong>().eTrees,1);
+            GameController.changeCountTabemono(saveHatGiong.eTrees,1);
             DecHeart(curHeart);
         }else if(CurrentSelect.getCurrentItem() == EItems.LayGiong && isCanGetIt){
-            GameController.changeCountItem(_HatGiong.GetComponent<HatGiong>().eTrees,1);
+            GameController.changeCountItem(saveHatGiong.eTrees,1);
             DecHeart(curHeart);
         }
-        CurrentSelect.setHatGiong(_HatGiong.GetComponent<HatGiong>());
+        CurrentSelect.setHatGiong(saveHatGiong);
         gameController.CheckDisplay(this);
+    }
+    public void setDataGround(Ground ground){
+
+    }
+    public Ground getDataGround(){
+        Ground tmpGround = new Ground();
+        tmpGround.luongNuoc = this.luongNuoc;
+        tmpGround.curHeart = this.curHeart;
+        tmpGround.saveStateHatGiong = this._HatGiong.activeSelf;
+        if(tmpGround.saveStateHatGiong){
+            HatGiong tmpHatGiong = new HatGiong();
+            tmpHatGiong.eTrees = saveHatGiong.eTrees;
+            tmpGround.i = this.i;
+            tmpHatGiong.index = saveHatGiong.index;
+        }
+        return tmpGround;
     }
 }

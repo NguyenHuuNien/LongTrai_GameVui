@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Chicken : SinhVat{
+public class Chicken : SinhVat, IDataChicken{
     public int curHeart{get;set;}
     public float doi{get;set;}
     [SerializeField] private ESex eSex;
@@ -40,4 +40,41 @@ public class Chicken : SinhVat{
     public void notSitDown(){
         chickenMove.randomDic();
     }    
+    // Save load
+    public Vector3 getPosChicken(){
+        return this.transform.position;
+    }
+    public void setPosChicken(Vector3 value) {
+        this.transform.position = value;
+    }
+
+    public int getHeartChicken()
+    {
+        return this.curHeart;
+    }
+
+    public void setHeartChicken(int heart)
+    {
+        this.curHeart = heart;
+    }
+
+    public float getDoiChicken()
+    {
+        return this.doi;
+    }
+
+    public void setDoiChicken(float doi)
+    {
+        this.doi = doi;
+    }
+
+    public ESex getSexChicken()
+    {
+        return eSex;
+    }
+
+    public void setSexChicken(ESex sex)
+    {
+        eSex = sex;
+    }
 }

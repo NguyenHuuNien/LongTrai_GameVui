@@ -15,7 +15,7 @@ public class CreateGround : MonoBehaviour{
                 x+=65;
                 GameObject go = Instantiate(m_Ground, m_ParentGround);
                 go.GetComponent<RectTransform>().anchoredPosition = v3;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
             x = -324f;
             y -= 50;
