@@ -44,6 +44,9 @@ public class Ground : SinhVat, IDataGround
         if(gameController.getIsActiveOfOshirase()&&isDisplay){
             displayed();
         }
+        if(Input.GetKeyDown(KeyCode.Q)){
+            SaveObject.Instant.addDataGround(this);
+        }
     }
     private void updateHeart(){
         prevMaxHeart = MaxHeart;
@@ -182,5 +185,8 @@ public class Ground : SinhVat, IDataGround
     public float getSpeedHatGiong()
     {
         return saveHatGiong.speedDevelop;
+    }
+    private void OnDisable() {
+        
     }
 }
